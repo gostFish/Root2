@@ -40,25 +40,17 @@ public class SpawnTriggers : MonoBehaviour
                 { 
                     if(val < 1f)//33 chance of new spawned thing to be Resource
                     {
-                        for(float k = 0; k <= resourcesTop.Length; k++)
-                        {
-                            if(val >= (k/resourcesTop.Length) && val <= (k+1/resourcesTop.Length))
-                            {
-                                inst = Instantiate(resourcesTop[(int)k], new Vector3(startPos.x+j,startPos.y+i, 100), Quaternion.Euler(90,0,180));
+                       // Debug.Log("Hey");
+                                inst = Instantiate(resourcesTop[Random.Range(0,resourcesTop.Length)], new Vector3(startPos.x+j,startPos.y+i, 100), Quaternion.Euler(90,0,180));
                                 inst.transform.parent = resourcesPool.transform;
-                            }
-                        }
+
                     }
                     else if (val > 1f && val < 2f)//33% chance to spawn obstacle
                     {
-                          for (float k = 0; k <= obstaclesTop.Length; k++)
-                          {
-                           if (val >= 1+(k / obstaclesTop.Length) && val <= 1+(k + 1 / obstaclesTop.Length))
-                           {
-                                inst = Instantiate(obstaclesTop[(int)k], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
+
+                                inst = Instantiate(obstaclesTop[Random.Range(0,obstaclesTop.Length)], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
                                 inst.transform.parent = obstaclesPool.transform;
-                            }
-                        }
+
                     }
                     /*else if (val > 2f && val < 3f)//33% chance to spawn obstacle
                     {
@@ -90,42 +82,30 @@ public class SpawnTriggers : MonoBehaviour
                 {
                     if (val < 1f)//33 chance of new spawned thing to be Resource
                     {
-                        for (float k = 0; k <= resourcesBot.Length; k++)
-                        {
-                            if (val >= (k / resourcesBot.Length) && val <= (k + 1 / resourcesBot.Length))
-                            {
+
                                 randSize = Random.Range(0.05f,0.5f);
-                                inst = Instantiate(resourcesBot[(int)k], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
+                                inst = Instantiate(resourcesBot[Random.Range(0,resourcesBot.Length)], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
                                 //inst.transform.localScale = new Vector3(randSize,randSize,randSize);
                                 inst.transform.parent = resourcesPool.transform;
-                            }
-                        }
+
                     }
                     else if (val > 1f && val < 2f)//33% chance to spawn obstacle
                     {
-                        for (float k = 0; k <= obstaclesBot.Length; k++)
-                        {
-                            if (val >= 1 + (k / obstaclesBot.Length) && val <= 1 + (k + 1 / obstaclesBot.Length))
-                            {
+
                                 randSize = Random.Range(0.05f, 0.5f);
-                                inst = Instantiate(obstaclesBot[(int)k], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
+                                inst = Instantiate(obstaclesBot[Random.Range(0, obstaclesBot.Length)], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
                                 //inst.transform.localScale = new Vector3(randSize, randSize, randSize);
                                 inst.transform.parent = obstaclesPool.transform;
-                            }
-                        }
+
                     }
                     else if (val > 2f && val < 3f)//33% chance to spawn obstacle
                     {
-                        for (float k = 0; k <= backgroundBot.Length; k++)
-                        {
-                            if (val >= 2f + (k / backgroundBot.Length) && val <= 2f + (k + 1 / backgroundBot.Length))
-                            {
+
                                 randSize = Random.Range(0.05f, 0.5f);
-                                inst = Instantiate(backgroundBot[(int)(k)], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
+                                inst = Instantiate(backgroundBot[Random.Range(0, backgroundBot.Length)], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
                                 //inst.transform.localScale = new Vector3(randSize, randSize, randSize);
                                 inst.transform.parent = backgroundPool.transform;
-                            }
-                        }
+
                     }
                 }
 
