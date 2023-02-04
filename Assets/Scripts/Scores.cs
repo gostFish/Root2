@@ -82,8 +82,6 @@ public class Scores : MonoBehaviour
 
     public void UpdateScores(float score, float time)
     {
-        //Time.timeScale = 0;
-
         if (PlayerPrefs.HasKey("HighScore"))
         {
             highScore = PlayerPrefs.GetFloat("HighScore");
@@ -114,18 +112,18 @@ public class Scores : MonoBehaviour
 
         winUI.SetActive(true);
 
+        //To Add time difference (0-1) with 1 most different - then enhance that by how far collectivly got
+        //score = //Need to get distance 1 and distance 2
+
         yourScoreLabel.GetComponent<TextMeshProUGUI>().text = "Your Score Was: " + string.Format("{0:0.00}", score);
         yourTimeLabel.GetComponent<TextMeshProUGUI>().text = "Your Time Was: " + string.Format("{0:0.00}", time) + "Seconds";
         bestScoreLabel.GetComponent<TextMeshProUGUI>().text = "Best Score Was: " + string.Format("{0:0.00}", highScore);
         bestTimeLabel.GetComponent<TextMeshProUGUI>().text = "Best Time Was: " + string.Format("{0:0.00}", bestTime) + " Seconds";
 
+        
+
+
         zoomOut = true;
     }
 
-    public void ZoomOut()
-    {
-        
-        
-        //Camera.main.transform.position;
-    }
 }

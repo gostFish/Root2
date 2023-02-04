@@ -8,6 +8,7 @@ public class StartCountdown : MonoBehaviour
 
     [SerializeField] private GameObject ready;
     [SerializeField] private GameObject start;
+    [SerializeField] private GameObject banner;
 
     IEnumerator WaitForRealSeconds(float seconds)
     {
@@ -39,7 +40,9 @@ public class StartCountdown : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        banner.SetActive(true);
         StartCoroutine(CountDownPt());
+        banner.SetActive(false);
     }
 
     // Update is called once per frame
