@@ -96,7 +96,7 @@ public class SpawnTriggers : MonoBehaviour
                             {
                                 randSize = Random.Range(0.05f,0.5f);
                                 inst = Instantiate(resourcesBot[(int)k], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
-                                inst.transform.localScale = new Vector3(randSize,randSize,randSize);
+                                //inst.transform.localScale = new Vector3(randSize,randSize,randSize);
                                 inst.transform.parent = resourcesPool.transform;
                             }
                         }
@@ -109,7 +109,7 @@ public class SpawnTriggers : MonoBehaviour
                             {
                                 randSize = Random.Range(0.05f, 0.5f);
                                 inst = Instantiate(obstaclesBot[(int)k], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
-                                inst.transform.localScale = new Vector3(randSize, randSize, randSize);
+                                //inst.transform.localScale = new Vector3(randSize, randSize, randSize);
                                 inst.transform.parent = obstaclesPool.transform;
                             }
                         }
@@ -122,7 +122,7 @@ public class SpawnTriggers : MonoBehaviour
                             {
                                 randSize = Random.Range(0.05f, 0.5f);
                                 inst = Instantiate(backgroundBot[(int)(k)], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
-                                inst.transform.localScale = new Vector3(randSize, randSize, randSize);
+                                //inst.transform.localScale = new Vector3(randSize, randSize, randSize);
                                 inst.transform.parent = backgroundPool.transform;
                             }
                         }

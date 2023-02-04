@@ -8,17 +8,7 @@ public class UIManagerScript : MonoBehaviour
     public GameObject mainMenu;
     public GameObject settingsMenu;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     public void EnableMainMenu()
     {
         mainMenu.SetActive(true);

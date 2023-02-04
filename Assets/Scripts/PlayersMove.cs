@@ -39,8 +39,16 @@ public class PlayersMove : MonoBehaviour
             player2.transform.position += new Vector3(0, vertP2Speed * Time.deltaTime, 0);
         }            
 
+        if(isP1Done && isP2Done)
+        {
+            return;
+        }
+
         cam1.transform.position = new Vector3(0,player1.transform.position.y,0);
         cam2.transform.position = new Vector3(0, player2.transform.position.y, 0);
+
+        //player1.transform.position = new Vector3(player1.transform.position.x, player1.transform.position.y, 150);
+       // player2.transform.position = new Vector3(player2.transform.position.x, player2.transform.position.y, 150);
 
     }
     // Update is called once per frame
@@ -53,16 +61,12 @@ public class PlayersMove : MonoBehaviour
             player1.transform.position = player1.transform.position + new Vector3(-p1Speed * Time.deltaTime /** (player1AccL / (player1AccR + 0.01f))*/, 0,0);
             
         }
-        /*else
-        {
-            if (player1AccL > 0)
-            {
-                player1AccL -= Time.deltaTime;
-            }
 
-        }*/
+        
 
-        if(vertP1Speed <= 0.25 || vertP2Speed <= 0.25)
+       
+
+        if (vertP1Speed <= 0.25 || vertP2Speed <= 0.25)
         {
             playersDead = true;
         }
@@ -73,16 +77,7 @@ public class PlayersMove : MonoBehaviour
             player1.transform.position = player1.transform.position + new Vector3(p1Speed * Time.deltaTime /** (player1AccR/(player1AccL+0.01f))*/, 0, 0);
             
         }
-       /* else
-        {
-            if(player1AccR > 0)
-            {
-                player1AccR -= Time.deltaTime;
-            }
-            
-        }*/
-
-
+       
 
         
         if (Input.GetKey(KeyCode.LeftArrow) && player2.transform.position.x > -4.5f)

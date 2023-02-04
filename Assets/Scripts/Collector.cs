@@ -37,12 +37,12 @@ public class Collector : MonoBehaviour
                 case ("Obstacle"):
                     if(gameManager.GetComponent<PlayersMove>().vertP1Speed > 0)
                     {
-                        gameManager.GetComponent<PlayersMove>().vertP1Speed -= 0.25f;
+                        gameManager.GetComponent<PlayersMove>().vertP1Speed -= 0.15f;
                         
                     }
                     if (gameManager.GetComponent<PlayersMove>().vertP2Speed > 0)
                     {
-                        gameManager.GetComponent<PlayersMove>().vertP2Speed -= 0.25f;
+                        gameManager.GetComponent<PlayersMove>().vertP2Speed -= 0.15f;
                     }
 
                         break;
@@ -59,11 +59,11 @@ public class Collector : MonoBehaviour
                 case ("Obstacle"):
                     if(gameManager.GetComponent<PlayersMove>().vertP1Speed > 0)
                     {
-                        gameManager.GetComponent<PlayersMove>().vertP1Speed -= 0.25f;
+                        gameManager.GetComponent<PlayersMove>().vertP1Speed -= 0.15f;
                     }
                     if (gameManager.GetComponent<PlayersMove>().vertP2Speed > 0)
                     {
-                        gameManager.GetComponent<PlayersMove>().vertP2Speed -= 0.25f;
+                        gameManager.GetComponent<PlayersMove>().vertP2Speed -= 0.15f;
                     }
                         
                     break;

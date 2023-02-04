@@ -193,12 +193,12 @@ public class BackgroundMove : MonoBehaviour
             }
         }
 
-        if(player1.transform.position.y <= -(maxDist+(backgroundScale/2)))
+        if(player1.transform.position.y <= -(maxDist-(backgroundScale/2)))
         {
             gameObject.GetComponent<PlayersMove>().isP1Done = true;
         }
 
-        if (player2.transform.position.y >= (maxDist + (backgroundScale/2)))
+        if (player2.transform.position.y >= (maxDist - (backgroundScale/2)))
         {
             gameObject.GetComponent<PlayersMove>().isP2Done = true;
         }
@@ -216,5 +216,10 @@ public class BackgroundMove : MonoBehaviour
             }
         }
 
+    }
+
+    public float EndOfCameraMove()
+    {
+        return (maxDist - (backgroundScale / 2));
     }
 }

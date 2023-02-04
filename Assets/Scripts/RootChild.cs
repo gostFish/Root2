@@ -8,13 +8,16 @@ public class RootChild : MonoBehaviour
     [SerializeField] private float speed;
 
     private float time;
-    public float angle;
+    public float angle1;
+    public float angle2;
+
+    public Quaternion moveDir;
+
     public float depth;
     public bool stop;
 
 
     private float val;
-    public bool jitter;
 
     private Rigidbody m_Rigidbody;
     private GameObject inst;
@@ -27,7 +30,7 @@ public class RootChild : MonoBehaviour
     {
         player1 = GameObject.FindGameObjectWithTag("Player1");
         m_Rigidbody = GetComponent<Rigidbody>();
-        transform.rotation = Quaternion.Euler(angle, angle, 0);
+        transform.rotation = moveDir;
     }
     void FixedUpdate()
     {
@@ -35,40 +38,33 @@ public class RootChild : MonoBehaviour
         if (depth > 0)
         {
             time = time + Time.deltaTime;
-            if (time > 0.2f)
+            if (time > 2)
             {
-                if(transform.position.y >  player1.transform.position.y)
+                if(transform.position.y <  player1.transform.position.y)
                 {
                     m_Rigidbody.velocity = transform.forward * speed;
-                }                
-                
-
-                if (depth > 0 && angle > 90 && angle < 270) //Dont spawn upwards
-                {
-                    val = Random.Range(0f, 10f);
-                    if (val < 0.7f)
-                    {
-
-                        inst = Instantiate(rootChild, transform.position, Quaternion.identity);
-                        inst.GetComponent<RootChild>().angle = angle / 3;
-                        inst.GetComponent<RootChild>().depth = depth - 1;
-                        inst.transform.parent = gameObject.transform;
-                    }
-                    else if (val < 1f)
-                    {
-                        inst = Instantiate(rootChild, transform.position, Quaternion.identity);
-                        inst.GetComponent<RootChild>().angle = -angle/3;
-                        inst.GetComponent<RootChild>().depth = depth - 1;
-                        inst.transform.parent = gameObject.transform;
-                    }
                 }
+                
+                if(Random.RandomRange(0f,10f) < 3f)
+                {
+                    inst = Instantiate(rootChild, transform.position, Quaternion.identity);
+                    inst.GetComponent<RootChild>().moveDir = Quaternion.Euler(0, moveDir.x + 30, moveDir.y + 30);
+                    inst.GetComponent<RootChild>().depth = depth - 1;
+                    //inst.transform.parent = gameObject.transform;
+                }
+                if (Random.RandomRange(0f, 10f) < 3f)
+                {
+                    inst = Instantiate(rootChild, transform.position, Quaternion.identity);
+                    inst.GetComponent<RootChild>().moveDir = Quaternion.Euler(0, moveDir.x - 30, moveDir.y - 30);
+                    inst.GetComponent<RootChild>().depth = depth - 1;
+                    //inst.transform.parent = gameObject.transform;
+                }
+
+
                 time = 0;
             }
-        }
-    }
-        
-        
-        
-
-    
+                
+         }
+     }
+  
 }

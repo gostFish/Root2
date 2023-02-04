@@ -22,6 +22,7 @@ public class Scores : MonoBehaviour
 
     [SerializeField] GameObject p1Screen;
     [SerializeField] GameObject p2Screen;
+    [SerializeField] GameObject endScreen;
 
     private float highScore;
     private float bestTime;
@@ -33,36 +34,48 @@ public class Scores : MonoBehaviour
         if (zoomOut)
         {
 
-            if (p1Camera.GetComponent<Camera>().orthographicSize < 50)
-            {
+            /* if (p1Camera.GetComponent<Camera>().orthographicSize < 50)
+             {
 
-                p1Camera.GetComponent<Camera>().orthographicSize += (0.1f);
-                p2Camera.GetComponent<Camera>().orthographicSize += (0.1f);
+                 p1Camera.GetComponent<Camera>().orthographicSize += (0.1f);
+                 p2Camera.GetComponent<Camera>().orthographicSize += (0.1f);
+             }
+
+             if (p1Screen.transform.localScale.x > 0.5f)
+             {
+                 p1Screen.transform.localScale += new Vector3(-0.01f, -0.01f, -0.01f);
+                 p2Screen.transform.localScale += new Vector3(-0.01f, -0.01f, -0.01f);
+             }
+
+             if (p1Screen.transform.localPosition.y > -110)
+             {
+                 p1Screen.transform.localPosition += new Vector3(0, -1f, 0);
+             }
+             if (p1Screen.transform.localPosition.x < 0)
+             {
+                 p1Screen.transform.localPosition += new Vector3(1f, 0, 0);
+             }
+
+             if (p2Screen.transform.localPosition.y < 110)
+             {
+                 p2Screen.transform.localPosition = p2Screen.transform.localPosition + new Vector3(0, 1f, 0);
+             }
+             else if (p2Screen.transform.localPosition.x > 0)
+             {
+                 p2Screen.transform.localPosition += new Vector3(-1f, 0, 0);
+             }*/
+            if (!endScreen.activeInHierarchy)
+            {
+                endScreen.SetActive(true);
+            }
+            
+
+            if (p1Camera.transform.position.y < gameObject.GetComponent<BackgroundMove>().EndOfCameraMove())
+            {
+                p1Camera.transform.position += new Vector3(0, 0.1f, 0);
             }
 
-            if (p1Screen.transform.localScale.x > 0.5f)
-            {
-                p1Screen.transform.localScale += new Vector3(-0.01f, -0.01f, -0.01f);
-                p2Screen.transform.localScale += new Vector3(-0.01f, -0.01f, -0.01f);
-            }
-
-            if (p1Screen.transform.localPosition.y > -110)
-            {
-                p1Screen.transform.localPosition += new Vector3(0, -1f, 0);
-            }
-            if (p1Screen.transform.localPosition.x < 0)
-            {
-                p1Screen.transform.localPosition += new Vector3(1f, 0, 0);
-            }
-
-            if (p2Screen.transform.localPosition.y < 110)
-            {
-                p2Screen.transform.localPosition = p2Screen.transform.localPosition + new Vector3(0, 1f, 0);
-            }
-            else if (p2Screen.transform.localPosition.x > 0)
-            {
-                p2Screen.transform.localPosition += new Vector3(-1f, 0, 0);
-            }
+            
         }
 
     }
