@@ -26,7 +26,13 @@ public class PlayersMove : MonoBehaviour
     [SerializeField] private float player2Acc;
 
     public bool playersDead;
-   
+
+
+    private void Start()
+    {
+        vertP1Speed += Random.Range(-1.0f, 1.0f);
+        vertP2Speed += Random.Range(-1.0f, 1.0f);
+    }
 
     private void FixedUpdate()
     {
