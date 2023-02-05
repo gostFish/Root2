@@ -76,18 +76,18 @@ public class Collector : MonoBehaviour
             {
                 case ("Resource"):
                     gameManager.GetComponent<PlayersMove>().vertP1Speed += Random.Range(0.15f, 0.55f);
-                   /* if (lookLeft)
+                    if (lookRight)
                     {
-                        rootinst = Instantiate(roots, new Vector3(other.transform.position.x, other.transform.position.y, 99f), Quaternion.Euler(120, 90, 270));
+                        rootinst = Instantiate(roots, new Vector3(transform.position.x, transform.position.y, 99f), Quaternion.Euler(120, 90, 270));
                     }
-                    else if (lookRight)
+                    else if (lookLeft)
                     {
-                        rootinst = Instantiate(roots, new Vector3(other.transform.position.x, other.transform.position.y, 99f), Quaternion.Euler(80, 90, 270));
+                        rootinst = Instantiate(roots, new Vector3(transform.position.x, transform.position.y, 99f), Quaternion.Euler(80, 90, 270));
                     }
                     else
                     {
-                        rootinst = Instantiate(roots, new Vector3(other.transform.position.x, other.transform.position.y, 99f), Quaternion.Euler(90, 0, 180));
-                    }*/
+                        rootinst = Instantiate(roots, new Vector3(transform.position.x, transform.position.y, 99f), Quaternion.Euler(90, 0, 180));
+                    }
                     break;
                 case ("Obstacle"):
                     /*if(gameManager.GetComponent<PlayersMove>().vertP1Speed > 0)
