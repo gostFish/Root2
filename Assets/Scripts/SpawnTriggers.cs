@@ -102,9 +102,12 @@ public class SpawnTriggers : MonoBehaviour
                     {
 
                                 randSize = Random.Range(0.05f, 0.5f);
-                                inst = Instantiate(backgroundBot[Random.Range(0, backgroundBot.Length-1)], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
-                                //inst.transform.localScale = new Vector3(randSize, randSize, randSize);
-                                inst.transform.parent = backgroundPool.transform;
+                        if(backgroundBot.Length > 0) {
+                            inst = Instantiate(backgroundBot[Random.Range(0, backgroundBot.Length)], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
+                            //inst.transform.localScale = new Vector3(randSize, randSize, randSize);
+                            inst.transform.parent = backgroundPool.transform;
+                        }
+                                
 
                     }
                 }

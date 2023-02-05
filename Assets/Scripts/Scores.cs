@@ -92,8 +92,6 @@ public class Scores : MonoBehaviour
         similarity = (1 - Mathf.Abs(Mathf.Abs(p1Camera.transform.position.y) - Mathf.Abs(p2Camera.transform.position.y)) / ((Mathf.Abs(p1Camera.transform.position.y) + Mathf.Abs(p2Camera.transform.position.y) + 1))) * 100;
         
 
-        Debug.Log(similarity + "%");
-
         if (PlayerPrefs.HasKey("HighSimiliarity"))
         {
             highSimilarity = PlayerPrefs.GetFloat("HighSimiliarity");
@@ -103,8 +101,8 @@ public class Scores : MonoBehaviour
         {
             highSimilarity = similarity;
             PlayerPrefs.SetFloat("HighSimiliarity", highSimilarity);
+            newHighScore.SetActive(true);
         }
-
 
         winUI.SetActive(true);
         if (gameObject.GetComponent<PlayersMove>().playersDead)
