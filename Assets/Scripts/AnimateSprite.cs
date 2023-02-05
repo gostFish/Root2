@@ -11,6 +11,8 @@ public class AnimateSprite : MonoBehaviour
     private float time;
     private int currFrame;
 
+    public bool keepFinished;
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -20,10 +22,18 @@ public class AnimateSprite : MonoBehaviour
             time = 0;
             gameObject.transform.GetComponent<MeshRenderer>().material = frames[currFrame];
             currFrame++;
-            if(currFrame >= frames.Length)
-            {
-                currFrame = 0;
+            if (currFrame >= frames.Length)
+            {                
+                if (!keepFinished)
+                {
+                    currFrame = 0;
+                }
+                else
+                {
+                    currFrame = frames.Length - 1;
+                }
             }
+            
         }
         
     }

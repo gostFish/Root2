@@ -6,8 +6,14 @@ public class Collector : MonoBehaviour
 {
 
     [SerializeField] private bool isPlayer1;
+    [SerializeField] private GameObject roots;
+    [SerializeField] private GameObject pool;
+
+    public bool lookRight;
+    public bool lookLeft;
 
     private GameObject gameManager;
+    private GameObject rootinst;
     public bool stopRoots;
     // Start is called before the first frame update
     void Awake()
@@ -33,6 +39,20 @@ public class Collector : MonoBehaviour
             {
                 case ("Resource"):
                     gameManager.GetComponent<PlayersMove>().vertP2Speed += Random.Range(0.15f,0.55f);
+                    if (lookLeft)
+                    {
+                        rootinst = Instantiate(roots, new Vector3(transform.position.x, transform.position.y, 99f), Quaternion.Euler(120, 90, 270));
+                    }
+                    else if(lookRight){
+                        rootinst = Instantiate(roots, new Vector3(transform.position.x, transform.position.y, 99f), Quaternion.Euler(60, 90, 270));
+                    }
+                    else
+                    {
+                        rootinst = Instantiate(roots, new Vector3(transform.position.x, transform.position.y, 99f), Quaternion.Euler(90, 0, 180));
+                    }
+
+                    
+                    rootinst.transform.parent = pool.transform;
                     break;
                 case ("Obstacle"):
                     if (gameManager.GetComponent<PlayersMove>().vertP1Speed > 0)

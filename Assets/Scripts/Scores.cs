@@ -15,6 +15,9 @@ public class Scores : MonoBehaviour
     [SerializeField] GameObject bestScoreLabel;
     [SerializeField] GameObject bestTimeLabel;
 
+    [SerializeField] GameObject p1Distance;
+    [SerializeField] GameObject p2Distance;
+
     [SerializeField] GameObject similarityLabel;
 
     [SerializeField] GameObject newHighScore;
@@ -116,6 +119,9 @@ public class Scores : MonoBehaviour
         yourScoreLabel.GetComponent<TextMeshProUGUI>().text = "Your Score Was: " + string.Format("{0:0.00}", similarity);
         bestScoreLabel.GetComponent<TextMeshProUGUI>().text = "Best Score Was: " + string.Format("{0:0.00}", highSimilarity);
 
+        p1Distance.GetComponent<TextMeshProUGUI>().text = "Player 1 Distance: " + Mathf.Abs(p1Camera.transform.position.y + 5).ToString("F2") + " metres";
+        p2Distance.GetComponent<TextMeshProUGUI>().text = "Player 2 Distance: " + Mathf.Abs(p2Camera.transform.position.y - 5).ToString("F2") + " metres";
+
         //similarityLabel.GetComponent<TextMeshProUGUI>().text = "Best Score was : " + highSimilarity.ToString("F0") + "%";
 
         /*
@@ -126,7 +132,7 @@ public class Scores : MonoBehaviour
         zoomOut = true;
     }
 
-
+    /*
     public void UpdateScores(float score, float time)
     {
         if (PlayerPrefs.HasKey("HighScore"))
@@ -167,9 +173,12 @@ public class Scores : MonoBehaviour
         bestScoreLabel.GetComponent<TextMeshProUGUI>().text = "Best Score Was: " + string.Format("{0:0.00}", highScore);
         bestTimeLabel.GetComponent<TextMeshProUGUI>().text = "Best Time Was: " + string.Format("{0:0.00}", bestTime) + " Seconds";
 
-        
+        p1Distance.GetComponent<TextMeshProUGUI>().text = "Player 1 Distance: " + string.Format("{0:0.00}", Mathf.Abs(p1Camera.transform.position.y+5) + " metres");
+        p2Distance.GetComponent<TextMeshProUGUI>().text = "Player 2 Distance: " + string.Format("{0:0.00}", Mathf.Abs(p2Camera.transform.position.y-5) + " metres");
+
+
 
         zoomOut = true;
     }
-
+    */
 }

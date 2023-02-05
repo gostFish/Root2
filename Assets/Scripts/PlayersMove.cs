@@ -68,10 +68,25 @@ public class PlayersMove : MonoBehaviour
         {
             //player1AccL += Time.deltaTime;
             player1.transform.position = player1.transform.position + new Vector3(-p1Speed * Time.deltaTime /** (player1AccL / (player1AccR + 0.01f))*/, 0,0);
-            
+            player1.transform.GetComponent<Collector>().lookLeft = true;
+
+        }
+        else
+        {
+            player1.transform.GetComponent<Collector>().lookLeft = false;
         }
 
-        
+        if (Input.GetKey(KeyCode.D) && player1.transform.position.x < 4.5f)
+        {
+            //player1AccR += Time.deltaTime;
+            player1.transform.position = player1.transform.position + new Vector3(p1Speed * Time.deltaTime /** (player1AccR/(player1AccL+0.01f))*/, 0, 0);
+            player1.transform.GetComponent<Collector>().lookRight = true;
+        }
+        else
+        {
+            player1.transform.GetComponent<Collector>().lookRight = false;
+        }
+
         if (vertP1Speed <= 0.25 || vertP2Speed <= 0.25)
         {
             playersDead = true;
@@ -82,12 +97,7 @@ public class PlayersMove : MonoBehaviour
 
         }
 
-        if (Input.GetKey(KeyCode.D) && player1.transform.position.x < 4.5f)
-        {
-            //player1AccR += Time.deltaTime;
-            player1.transform.position = player1.transform.position + new Vector3(p1Speed * Time.deltaTime /** (player1AccR/(player1AccL+0.01f))*/, 0, 0);
-            
-        }
+        
        
 
         

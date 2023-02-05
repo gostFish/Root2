@@ -85,7 +85,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.12219715
+        value: 0.05077076
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -93,8 +93,8 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.41192508
-        value: 0.23867162
+        time: 0.42545962
+        value: 0.18404515
         inSlope: 1.0242628
         outSlope: 1.0242628
         tangentMode: 0
@@ -102,8 +102,8 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.54226995
       - serializedVersion: 3
-        time: 0.6707081
-        value: 0.3799523
+        time: 0.68810314
+        value: 0.3043145
         inSlope: 0.70983166
         outSlope: 0.70983166
         tangentMode: 0
@@ -112,7 +112,7 @@ TrailRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0.5200577
+        value: 0.3351822
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -152,7 +152,7 @@ TrailRenderer:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
-    numCapVertices: 2
+    numCapVertices: 9
     alignment: 0
     textureMode: 0
     shadowBias: 0.5
@@ -174,10 +174,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rootChild: {fileID: 3887563916671385533}
   speed: 2
-  angle: 180
+  angle1: 0
+  angle2: 0
+  moveDir: {x: 0, y: 0, z: 0, w: 0}
   depth: 4
   stop: 0
-  jitter: 1
   player1: {fileID: 0}
 --- !u!54 &-7889353709076236937
 Rigidbody:
