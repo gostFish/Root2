@@ -84,6 +84,11 @@ public class BackgroundMove : MonoBehaviour
         time += Time.deltaTime;
     }
 
+    public float GetTime()
+    {
+        return time;
+    }
+
     void ExtraBackground()
     {
         //Spawn extra tiles for Top

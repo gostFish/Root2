@@ -32,12 +32,12 @@ public class Collector : MonoBehaviour
             switch (other.tag)
             {
                 case ("Resource"):
-                    gameManager.GetComponent<PlayersMove>().vertP2Speed += Random.Range(0.15f,0.35f);
+                    gameManager.GetComponent<PlayersMove>().vertP2Speed += Random.Range(0.15f,0.55f);
                     break;
                 case ("Obstacle"):
-                    if(gameManager.GetComponent<PlayersMove>().vertP1Speed > 0)
+                    if (gameManager.GetComponent<PlayersMove>().vertP1Speed > 0)
                     {
-                        gameManager.GetComponent<PlayersMove>().vertP1Speed -= Random.Range(0.10f, 0.20f);
+                        gameManager.GetComponent<PlayersMove>().vertP1Speed -= Random.Range(0.15f, 0.45f);
                         
                     }
 
@@ -55,7 +55,7 @@ public class Collector : MonoBehaviour
             switch (other.tag)
             {
                 case ("Resource"):
-                    gameManager.GetComponent<PlayersMove>().vertP1Speed += Random.Range(0.15f, 0.35f);
+                    gameManager.GetComponent<PlayersMove>().vertP1Speed += Random.Range(0.15f, 0.55f);
                     break;
                 case ("Obstacle"):
                     /*if(gameManager.GetComponent<PlayersMove>().vertP1Speed > 0)
@@ -64,7 +64,7 @@ public class Collector : MonoBehaviour
                     }*/
                     if (gameManager.GetComponent<PlayersMove>().vertP2Speed > 0)
                     {
-                        gameManager.GetComponent<PlayersMove>().vertP2Speed -= Random.Range(0.1f, 0.2f);
+                        gameManager.GetComponent<PlayersMove>().vertP2Speed -= Random.Range(0.15f, 0.45f);
                     }
                         
                     break;

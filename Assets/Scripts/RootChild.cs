@@ -35,7 +35,7 @@ public class RootChild : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (depth > 0)
+        if (depth > 0 && !gameObject.GetComponent<PlayersMove>().isP1Done)
         {
             time = time + Time.deltaTime;
             if (time > 2)
@@ -45,14 +45,14 @@ public class RootChild : MonoBehaviour
                     m_Rigidbody.velocity = transform.forward * speed;
                 }
                 
-                if(Random.RandomRange(0f,10f) < 3f)
+                if(Random.Range(0f,10f) < 3f)
                 {
                     inst = Instantiate(rootChild, transform.position, Quaternion.identity);
                     inst.GetComponent<RootChild>().moveDir = Quaternion.Euler(0, moveDir.x + 30, moveDir.y + 30);
                     inst.GetComponent<RootChild>().depth = depth - 1;
                     //inst.transform.parent = gameObject.transform;
                 }
-                if (Random.RandomRange(0f, 10f) < 3f)
+                if (Random.Range(0f, 10f) < 3f)
                 {
                     inst = Instantiate(rootChild, transform.position, Quaternion.identity);
                     inst.GetComponent<RootChild>().moveDir = Quaternion.Euler(0, moveDir.x - 30, moveDir.y - 30);

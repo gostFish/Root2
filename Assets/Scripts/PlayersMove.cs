@@ -25,6 +25,8 @@ public class PlayersMove : MonoBehaviour
 
     [SerializeField] private float player2Acc;
 
+    private float time;
+
     public bool playersDead;
 
 
@@ -35,7 +37,8 @@ public class PlayersMove : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
+    {        
+
         if (!isP1Done) 
         {
             player1.transform.position -= new Vector3(0, vertP1Speed * Time.deltaTime, 0);

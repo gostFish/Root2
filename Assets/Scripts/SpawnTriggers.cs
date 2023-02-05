@@ -20,6 +20,7 @@ public class SpawnTriggers : MonoBehaviour
     private float val;
     private GameObject inst;
     private float randSize;
+    private float multiplier;
 
     // Update is called once per frame
     void Update()
@@ -29,27 +30,31 @@ public class SpawnTriggers : MonoBehaviour
 
     public void SpawnRandomTop(Vector3 startPos,int height,int width)        
     {
+        multiplier = (gameObject.GetComponent<BackgroundMove>().GetTime() - 10) / 10;
         //Debug.Log("Called");
-        for (float i = -height/2; i < height/2; i+=1.2f)
+        for (float i = -height/2; i < height/2; i+=1.6f)
         {
-            for (float j = -width/2; j < width/2; j+=1.2f)
+            for (float j = -width/2; j < width/2; j+=1.6f)
             {
                 val = Random.Range(0f, 20f);
                 //Debug.Log(val);
-                if (val < 4)// 2% chance to spawn something
+                if (val < (4 + multiplier))// 2% chance to spawn something
                 { 
                     if(val < 1f)//33 chance of new spawned thing to be Resource
                     {
-                       // Debug.Log("Hey");
-                                inst = Instantiate(resourcesTop[Random.Range(0,resourcesTop.Length)], new Vector3(startPos.x+j,startPos.y+i, 100), Quaternion.Euler(90,0,180));
-                                inst.transform.parent = resourcesPool.transform;
+                        // Debug.Log("Hey");
+                        randSize = Random.Range(0.7f, 1f);
+                        inst = Instantiate(resourcesTop[Random.Range(0,resourcesTop.Length)], new Vector3(startPos.x+j,startPos.y+i, 100), Quaternion.Euler(90,0,180));
+                        inst.transform.localScale.Scale(new Vector3 (randSize,randSize,randSize));
+                        inst.transform.parent = resourcesPool.transform;
 
                     }
                     else if (val > 1f && val < 2f)//33% chance to spawn obstacle
                     {
-
-                                inst = Instantiate(obstaclesTop[Random.Range(0,obstaclesTop.Length)], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
-                                inst.transform.parent = obstaclesPool.transform;
+                        randSize = Random.Range(0.7f, 1f);
+                        inst = Instantiate(obstaclesTop[Random.Range(0,obstaclesTop.Length)], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
+                        inst.transform.localScale.Scale(new Vector3(randSize, randSize, randSize));
+                        inst.transform.parent = obstaclesPool.transform;
 
                     }
                     /*else if (val > 2f && val < 3f)//33% chance to spawn obstacle
@@ -69,47 +74,38 @@ public class SpawnTriggers : MonoBehaviour
         }
     }
 
+    
     public void SpawnRandomBottom(Vector3 startPos, int height, int width)
     {
+        multiplier = (gameObject.GetComponent<BackgroundMove>().GetTime() - 10) / 10;
         //Debug.Log("Called");
-        for (float i = -height / 2; i < height / 2; i += 1.2f)
+        for (float i = -height / 2; i < height / 2; i += 1.6f)
         {
-            for (float j = -width / 2; j < width / 2; j += 1.2f)
+            for (float j = -width / 2; j < width / 2; j += 1.6f)
             {
                 val = Random.Range(0f, 20f);
                 //Debug.Log(val);
-                if (val < 4)// 2% chance to spawn something
+                if (val < (4f + multiplier))// 2% chance to spawn something
                 {
-                    if (val < 1f)//33 chance of new spawned thing to be Resource
+                    if (val < 1f )//33 chance of new spawned thing to be Resource
                     {
 
-                                randSize = Random.Range(0.05f,0.5f);
-                                inst = Instantiate(resourcesBot[Random.Range(0,resourcesBot.Length)], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
-                                //inst.transform.localScale = new Vector3(randSize,randSize,randSize);
-                                inst.transform.parent = resourcesPool.transform;
+                        randSize = Random.Range(0.75f, 1f);
+                        inst = Instantiate(resourcesBot[Random.Range(0,resourcesBot.Length)], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
+                        inst.transform.localScale.Scale(new Vector3(randSize, randSize, randSize));
+                        inst.transform.parent = resourcesPool.transform;
 
                     }
-                    else if (val > 1f && val < 2f)//33% chance to spawn obstacle
+                    else//33% chance to spawn obstacle
                     {
 
-                                randSize = Random.Range(0.05f, 0.5f);
-                                inst = Instantiate(obstaclesBot[Random.Range(0, obstaclesBot.Length)], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
-                                //inst.transform.localScale = new Vector3(randSize, randSize, randSize);
-                                inst.transform.parent = obstaclesPool.transform;
+                        randSize = Random.Range(0.75f, 1f);
+                        inst = Instantiate(obstaclesBot[Random.Range(0, obstaclesBot.Length)], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
+                        inst.transform.localScale.Scale(new Vector3(randSize, randSize, randSize));
+                        inst.transform.parent = obstaclesPool.transform;
 
                     }
-                    else if (val > 2f && val < 3f)//33% chance to spawn obstacle
-                    {
-
-                                randSize = Random.Range(0.05f, 0.5f);
-                        if(backgroundBot.Length > 0) {
-                            inst = Instantiate(backgroundBot[Random.Range(0, backgroundBot.Length)], new Vector3(startPos.x + j, startPos.y + i, 100), Quaternion.Euler(90, 0, 180));
-                            //inst.transform.localScale = new Vector3(randSize, randSize, randSize);
-                            inst.transform.parent = backgroundPool.transform;
-                        }
-                                
-
-                    }
+                    
                 }
 
             }

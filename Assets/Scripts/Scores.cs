@@ -80,7 +80,8 @@ public class Scores : MonoBehaviour
 
             if (p1Camera.transform.position.y < gameObject.GetComponent<BackgroundMove>().EndOfCameraMove())
             {
-                p1Camera.transform.position += new Vector3(0, 0.1f, 0);
+                 //n *m = 10 -> 10/m = n
+                p1Camera.transform.position += new Vector3(0, 0.3f, 0);
             }
 
             
@@ -89,7 +90,9 @@ public class Scores : MonoBehaviour
     }
     public void UpdateScores()
     {
-        similarity = (1 - Mathf.Abs(Mathf.Abs(p1Camera.transform.position.y) - Mathf.Abs(p2Camera.transform.position.y)) / ((Mathf.Abs(p1Camera.transform.position.y) + Mathf.Abs(p2Camera.transform.position.y) + 1))) * 100;
+        float num = Mathf.Abs(Mathf.Abs(p1Camera.transform.position.y) - Mathf.Abs(p2Camera.transform.position.y));
+        float den = Mathf.Abs(p1Camera.transform.position.y) + Mathf.Abs(p2Camera.transform.position.y) + 1;
+        similarity =  (1 - (num/den)) * 100 ;
         
 
         if (PlayerPrefs.HasKey("HighSimiliarity"))
