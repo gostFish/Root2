@@ -103,15 +103,21 @@ public class PlayersMove : MonoBehaviour
         
         if (Input.GetKey(KeyCode.LeftArrow) && player2.transform.position.x > -4.5f)
         {
+            player2.transform.GetComponent<Collector>().lookLeft = true;
+            player2.transform.GetComponent<Collector>().lookRight = false;
             player2.transform.position = player2.transform.position + new Vector3(-p2Speed * Time.deltaTime, 0, 0);
             player2.transform.rotation = Quaternion.Euler(0, 0, 225);
-        }else if (Input.GetKey(KeyCode.RightArrow) && player2.transform.position.x < 4.5f)
+        }
+        else if (Input.GetKey(KeyCode.RightArrow) && player2.transform.position.x < 4.5f)
         {
+            player2.transform.GetComponent<Collector>().lookRight = true;
+            player2.transform.GetComponent<Collector>().lookLeft = false;
             player2.transform.position = player2.transform.position + new Vector3(p2Speed * Time.deltaTime, 0, 0);
             player2.transform.rotation = Quaternion.Euler(0, 0, 135);
         }
         else
         {
+            
             player2.transform.rotation = Quaternion.Euler(0, 0, 180);
         }
     }

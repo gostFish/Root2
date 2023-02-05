@@ -30,13 +30,17 @@ public class Scores : MonoBehaviour
     [SerializeField] GameObject p2Screen;
     [SerializeField] GameObject endScreen;
 
-    
+    [SerializeField] GameObject timer;
+
+
 
     private float highScore;
     private float bestTime;
 
     private float similarity;
+    private float growth;
     private float highSimilarity;
+    private float highGrowth;
 
     private bool zoomOut;
 
@@ -96,13 +100,19 @@ public class Scores : MonoBehaviour
         float num = Mathf.Abs(Mathf.Abs(p1Camera.transform.position.y) - Mathf.Abs(p2Camera.transform.position.y));
         float den = Mathf.Abs(p1Camera.transform.position.y) + Mathf.Abs(p2Camera.transform.position.y) + 1;
         similarity =  (1 - (num/den)) * 100 ;
-        
+
+        growth = Mathf.Abs(p1Camera.transform.position.y) + Mathf.Abs(p2Camera.transform.position.y);
 
         if (PlayerPrefs.HasKey("HighSimiliarity"))
         {
             highSimilarity = PlayerPrefs.GetFloat("HighSimiliarity");
         }
-        
+
+        if (PlayerPrefs.HasKey("HighGrowth"))
+        {
+            highGrowth = PlayerPrefs.GetFloat("HighGrowth");
+        }
+
         if (highSimilarity < similarity)
         {
             highSimilarity = similarity;
@@ -110,17 +120,25 @@ public class Scores : MonoBehaviour
             newHighScore.SetActive(true);
         }
 
+        if (highGrowth < growth)
+        {
+            highGrowth = growth;
+            PlayerPrefs.SetFloat("HighGrowth", highGrowth);
+            newBestTime.SetActive(true);
+        }
+
         winUI.SetActive(true);
         if (gameObject.GetComponent<PlayersMove>().playersDead)
         {
             uiLabel.GetComponent<TextMeshProUGUI>().text = "Perished Early";
         }
-                
-        yourScoreLabel.GetComponent<TextMeshProUGUI>().text = "Your Score Was: " + string.Format("{0:0.00}", similarity);
-        bestScoreLabel.GetComponent<TextMeshProUGUI>().text = "Best Score Was: " + string.Format("{0:0.00}", highSimilarity);
 
-        p1Distance.GetComponent<TextMeshProUGUI>().text = "Player 1 Distance: " + Mathf.Abs(p1Camera.transform.position.y + 5).ToString("F2") + " metres";
-        p2Distance.GetComponent<TextMeshProUGUI>().text = "Player 2 Distance: " + Mathf.Abs(p2Camera.transform.position.y - 5).ToString("F2") + " metres";
+        timer.SetActive(false);
+        yourScoreLabel.GetComponent<TextMeshProUGUI>().text = "Distance Sync \n\n " + similarity.ToString("F1") + "%";
+        bestScoreLabel.GetComponent<TextMeshProUGUI>().text = "Best Sync \n\n" + highSimilarity.ToString("F1") + "%";
+
+        p1Distance.GetComponent<TextMeshProUGUI>().text = "Plant growth \n\n" + growth.ToString("F1") + " metres";
+        p2Distance.GetComponent<TextMeshProUGUI>().text = "Best Growth \n\n" + highGrowth.ToString("F1") + " metres";
 
         //similarityLabel.GetComponent<TextMeshProUGUI>().text = "Best Score was : " + highSimilarity.ToString("F0") + "%";
 
