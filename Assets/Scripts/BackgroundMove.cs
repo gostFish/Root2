@@ -205,13 +205,14 @@ public class BackgroundMove : MonoBehaviour
 
         if(gameObject.GetComponent<PlayersMove>().isP1Done && gameObject.GetComponent<PlayersMove>().isP2Done)
         {
-            
-                score = Mathf.Abs(player1.transform.position.y) + Mathf.Abs(player2.transform.position.y);
-
             if (!showingStats)
             {
-                gameObject.GetComponent<Scores>().UpdateScores(score, time);
-                ExtraBackground();
+
+                score = Mathf.Abs(player1.transform.position.y) + Mathf.Abs(player2.transform.position.y);
+
+                gameObject.GetComponent<Scores>().UpdateScores();
+                //gameObject.GetComponent<Scores>().UpdateScores(score, time);
+                //ExtraBackground();
                 showingStats = true;
             }
         }
@@ -220,6 +221,7 @@ public class BackgroundMove : MonoBehaviour
 
     public float EndOfCameraMove()
     {
-        return (maxDist - (backgroundScale / 2));
+        return (player2.transform.position.y);
+        //return (maxDist - (backgroundScale / 2));
     }
 }

@@ -40,10 +40,11 @@ public class Collector : MonoBehaviour
                         gameManager.GetComponent<PlayersMove>().vertP1Speed -= Random.Range(0.10f, 0.20f);
                         
                     }
-                    if (gameManager.GetComponent<PlayersMove>().vertP2Speed > 0)
+
+                    /*if (gameManager.GetComponent<PlayersMove>().vertP2Speed > 0)
                     {
                         gameManager.GetComponent<PlayersMove>().vertP2Speed -= 0.15f;
-                    }
+                    }*/
 
                         break;
             }
@@ -57,10 +58,10 @@ public class Collector : MonoBehaviour
                     gameManager.GetComponent<PlayersMove>().vertP1Speed += Random.Range(0.15f, 0.35f);
                     break;
                 case ("Obstacle"):
-                    if(gameManager.GetComponent<PlayersMove>().vertP1Speed > 0)
+                    /*if(gameManager.GetComponent<PlayersMove>().vertP1Speed > 0)
                     {
                         gameManager.GetComponent<PlayersMove>().vertP1Speed -= Random.Range(0.1f, 0.2f);
-                    }
+                    }*/
                     if (gameManager.GetComponent<PlayersMove>().vertP2Speed > 0)
                     {
                         gameManager.GetComponent<PlayersMove>().vertP2Speed -= Random.Range(0.1f, 0.2f);

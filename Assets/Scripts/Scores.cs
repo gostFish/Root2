@@ -8,11 +8,14 @@ public class Scores : MonoBehaviour
 {
 
     [SerializeField] GameObject winUI;
-    
+    [SerializeField] GameObject uiLabel;
+
     [SerializeField] GameObject yourScoreLabel;
     [SerializeField] GameObject yourTimeLabel;
     [SerializeField] GameObject bestScoreLabel;
     [SerializeField] GameObject bestTimeLabel;
+
+    [SerializeField] GameObject similarityLabel;
 
     [SerializeField] GameObject newHighScore;
     [SerializeField] GameObject newBestTime;
@@ -24,8 +27,13 @@ public class Scores : MonoBehaviour
     [SerializeField] GameObject p2Screen;
     [SerializeField] GameObject endScreen;
 
+    
+
     private float highScore;
     private float bestTime;
+
+    private float similarity;
+    private float highSimilarity;
 
     private bool zoomOut;
 
@@ -79,6 +87,44 @@ public class Scores : MonoBehaviour
         }
 
     }
+    public void UpdateScores()
+    {
+        similarity = (1 - Mathf.Abs(Mathf.Abs(p1Camera.transform.position.y) - Mathf.Abs(p2Camera.transform.position.y)) / ((Mathf.Abs(p1Camera.transform.position.y) + Mathf.Abs(p2Camera.transform.position.y) + 1))) * 100;
+        
+
+        Debug.Log(similarity + "%");
+
+        if (PlayerPrefs.HasKey("HighSimiliarity"))
+        {
+            highSimilarity = PlayerPrefs.GetFloat("HighSimiliarity");
+        }
+        
+        if (highSimilarity < similarity)
+        {
+            highSimilarity = similarity;
+            PlayerPrefs.SetFloat("HighSimiliarity", highSimilarity);
+        }
+
+
+        winUI.SetActive(true);
+        if (gameObject.GetComponent<PlayersMove>().playersDead)
+        {
+            uiLabel.GetComponent<TextMeshProUGUI>().text = "Perished Early";
+        }
+                
+        yourScoreLabel.GetComponent<TextMeshProUGUI>().text = "Your Score Was: " + string.Format("{0:0.00}", similarity);
+        bestScoreLabel.GetComponent<TextMeshProUGUI>().text = "Best Score Was: " + string.Format("{0:0.00}", highSimilarity);
+
+        //similarityLabel.GetComponent<TextMeshProUGUI>().text = "Best Score was : " + highSimilarity.ToString("F0") + "%";
+
+        /*
+        yourTimeLabel.GetComponent<TextMeshProUGUI>().text = "Your Time Was: " + string.Format("{0:0.00}", time) + "Seconds";
+        
+        bestTimeLabel.GetComponent<TextMeshProUGUI>().text = "Best Time Was: " + string.Format("{0:0.00}", bestTime) + " Seconds";*/
+
+        zoomOut = true;
+    }
+
 
     public void UpdateScores(float score, float time)
     {
@@ -121,7 +167,6 @@ public class Scores : MonoBehaviour
         bestTimeLabel.GetComponent<TextMeshProUGUI>().text = "Best Time Was: " + string.Format("{0:0.00}", bestTime) + " Seconds";
 
         
-
 
         zoomOut = true;
     }

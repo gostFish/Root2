@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public class StartCountdown : MonoBehaviour
@@ -9,6 +10,11 @@ public class StartCountdown : MonoBehaviour
     [SerializeField] private GameObject ready;
     [SerializeField] private GameObject start;
     [SerializeField] private GameObject banner;
+
+    [SerializeField] private GameObject timerLabel;
+
+    public float timer;
+    private bool showingStats;
 
     IEnumerator WaitForRealSeconds(float seconds)
     {
@@ -24,15 +30,17 @@ public class StartCountdown : MonoBehaviour
         Time.timeScale = 0;
         ready.SetActive(true);
         start.SetActive(false);
+        timerLabel.SetActive(false);
 
-        
+
         yield return StartCoroutine(WaitForRealSeconds(2f));
         ready.SetActive(false);
         start.SetActive(true);
         yield return StartCoroutine(WaitForRealSeconds(1f));
         start.SetActive(false);
         Time.timeScale = 1;
-
+        timerLabel.SetActive(true);
+        banner.SetActive(false);
     }
 
    
@@ -42,12 +50,27 @@ public class StartCountdown : MonoBehaviour
     {
         banner.SetActive(true);
         StartCoroutine(CountDownPt());
-        banner.SetActive(false);
+        
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        timer -= Time.deltaTime;
+        timerLabel.GetComponent<TextMeshProUGUI>().text = "" + timer.ToString("F0");
+        if(timer <= 0)
+        {
+            if(!showingStats){
+                gameObject.GetComponent<PlayersMove>().isP1Done = true;
+                gameObject.GetComponent<PlayersMove>().isP2Done = true;
+                GameObject.FindGameObjectWithTag("Player2").GetComponent<AnimateSprite>().enabled = true;
+                timerLabel.SetActive(false);
+                //gameObject.GetComponent<Scores>().UpdateScores();
+                showingStats = true;
+            }
+            
+            //ExtraBackground();
+            //showingStats = true;
+        }
     }
 }

@@ -69,12 +69,14 @@ public class PlayersMove : MonoBehaviour
         }
 
         
-
-       
-
         if (vertP1Speed <= 0.25 || vertP2Speed <= 0.25)
         {
             playersDead = true;
+            isP1Done = true;
+            isP2Done = true;
+            vertP1Speed = 0;
+            vertP2Speed = 0;
+
         }
 
         if (Input.GetKey(KeyCode.D) && player1.transform.position.x < 4.5f)
@@ -89,11 +91,15 @@ public class PlayersMove : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow) && player2.transform.position.x > -4.5f)
         {
             player2.transform.position = player2.transform.position + new Vector3(-p2Speed * Time.deltaTime, 0, 0);
-        }
-       
-        if (Input.GetKey(KeyCode.RightArrow) && player2.transform.position.x < 4.5f)
+            player2.transform.rotation = Quaternion.Euler(0, 0, 225);
+        }else if (Input.GetKey(KeyCode.RightArrow) && player2.transform.position.x < 4.5f)
         {
             player2.transform.position = player2.transform.position + new Vector3(p2Speed * Time.deltaTime, 0, 0);
+            player2.transform.rotation = Quaternion.Euler(0, 0, 135);
+        }
+        else
+        {
+            player2.transform.rotation = Quaternion.Euler(0, 0, 180);
         }
     }
 }
